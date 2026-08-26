@@ -1,0 +1,170 @@
+:root {
+  --ink: #1a1a1a;
+  --paper: #faf7f2;
+  --purple: #6c4bd6;
+  --purple-dark: #5638b8;
+  --muted: #756f68;
+  --line: #e4ddd2;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+header {
+  background: #111;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+header .site-name {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+header .username {
+  font-family: Arial, sans-serif;
+  font-size: 0.95rem;
+  color: #ddd;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 56px;
+  padding: 64px 20px 120px;
+}
+
+.blog-box {
+  position: relative;
+  background: #fff;
+  max-width: 700px;
+  width: 100%;
+  padding: 40px 44px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+}
+
+/* Small author badge — sits on top of the box's top border,
+   half above the line and half below it, at the top-right corner */
+.author-badge {
+  position: absolute;
+  top: 0;
+  right: 32px;
+  transform: translateY(-50%);
+  background: var(--muted);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  box-shadow: 0 3px 10px rgba(108, 75, 214, 0.35);
+  white-space: nowrap;
+}
+
+.blog-box h1 {
+  margin-top: 0;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.meta {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 20px;
+}
+
+.blog-box p {
+  line-height: 1.7;
+  font-size: 1.05rem;
+  text-align: left;
+}
+
+/* Pure CSS scroll-driven fade-in — only applies if the browser supports it.
+   Content is fully visible by default everywhere else. */
+@supports (animation-timeline: view()) {
+  .blog-box {
+    animation: fadeSlideIn linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
+  }
+
+  @keyframes fadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* New Post button — floating, outside the content boxes */
+.new-post-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--purple);
+  color: #fff;
+  border: none;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 16px 30px;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(108, 75, 214, 0.4);
+  transition: background 0.2s ease, transform 0.15s ease;
+  z-index: 20;
+}
+
+.new-post-btn:hover {
+  background: var(--purple-dark);
+  transform: translateY(-2px);
+}
+
+.new-post-btn:focus-visible {
+  outline: 3px solid var(--purple-dark);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  header { padding: 14px 18px; }
+  .blog-box { padding: 28px 22px; }
+  .author-badge {
+    right: 16px;
+    font-size: 0.72rem;
+    padding: 5px 12px;
+  }
+  .new-post-btn {
+    bottom: 20px;
+    right: 20px;
+    padding: 14px 24px;
+  }
+}
